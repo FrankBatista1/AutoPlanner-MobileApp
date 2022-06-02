@@ -1,27 +1,28 @@
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {Image, Text, View, TextInput, StyleSheet, Button} from 'react-native';
-import Logo from './components/Logo';
+import {StyleSheet} from 'react-native';
+import HomeScreen from './src/components/HomeScreen';
+import ProfileScreen from './src/components/ProfileScreen';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const [userName, onChangeUserName] = React.useState("");
-  const [userPassword, onChangeUserPassword] = React.useState("");
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Logo />
-      <TextInput
-        style={styles.form}
-        onChangeText={onChangeUserName}
-        placeholder="UserName"
-        value={userName}
-      />
-      <TextInput
-        style={styles.form}
-        onChangeText={onChangeUserPassword}
-        placeholder="Password"
-        value={userPassword}
-      />
-      <Button title='Log in(test button not actually login)'>test</Button>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{title: 'Welcome'}}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{title: 'Welcome Jane'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 const styles = StyleSheet.create({
