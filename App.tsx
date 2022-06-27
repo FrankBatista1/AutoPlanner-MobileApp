@@ -1,30 +1,23 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import HomeScreen from './src/components/HomeScreen';
-import ProfileScreen from './src/components/ProfileScreen';
+import StackNavigator from './src/navigator/StackNavigator';
+import {AuthProvider} from './src/context/AuthContext';
 
-const Stack = createNativeStackNavigator();
+const AppState = ({children}: any) => {
+  return <AuthProvider>{children}</AuthProvider>;
+};
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{title: 'Welcome'}}
-        />
-        <Stack.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{title: 'Welcome Jane'}}
-        />
-      </Stack.Navigator>
+      <AppState>
+        <StackNavigator />
+      </AppState>
     </NavigationContainer>
   );
 };
+
 const styles = StyleSheet.create({
   form: {
     height: 40,

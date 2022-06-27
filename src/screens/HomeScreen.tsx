@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native'
 import Logo from '../components/Logo'
 
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({navigation}:any) => {
   const [userName, onChangeUserName] = React.useState("");
   const [userPassword, onChangeUserPassword] = React.useState("");
   return (
